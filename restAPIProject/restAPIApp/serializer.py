@@ -16,6 +16,11 @@ class Employee_serializer(serializers.Serializer):
         
     def create(self, validated_data):
         return Employee.objects.create(**validated_data)
+    def update(self,instance, validated_data):
+        for key, value in validated_data.items():
+            setattr(instance,key,value)
+        instance.save()
+        return instance
     
     class meta:
         model = Employee
