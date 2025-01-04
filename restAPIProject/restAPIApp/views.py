@@ -52,6 +52,19 @@ class EmployeeDetail(APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
+    def patch(self,request,ID):
+        data = request.data
+        try:
+            employee = Employee.objects.get(ID = ID)
+        except Exception as e:
+            raise Response("No records found", status=status.HTTP_404_NOT_FOUND)
+        serializer = self.serializer_class(employee, data=data, partial = True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
 
 def register(request):
     if request.method == 'POST':
