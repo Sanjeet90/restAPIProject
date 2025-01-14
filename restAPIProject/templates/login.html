@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OAuth Authentication</title>
+</head>
+<body>
+    <h1>Welcome to the OAuth Authentication Example</h1>
+    {% if user.is_authenticated %}
+        <p>Hello, {{ user.username }}! <a href="{% url 'account_logout' %}">Logout</a></p>
+    {% else %}
+        <p><a href="{% url 'account_login' %}">Login</a></p>
+    {% endif %}
+</body>
+</html>

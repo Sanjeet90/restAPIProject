@@ -10,7 +10,7 @@ class Employee(models.Model):
     Age = models.CharField(max_length=100,default="", null=True)
 
     def __str__(self):
-        return self.Emp_ID
+        return self.ID
     
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True)
